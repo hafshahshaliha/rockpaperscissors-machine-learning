@@ -1,16 +1,15 @@
 # Proyek Akhir: Menyelesaikan Permasalahan Turnover Karyawan pada Perusahaan Edutech  
-> **Studi Kasus – PT Jayajaya (Platform Pembelajaran Daring)**
+> **Studi Kasus – PT Jayajaya**
 
 ---
 
 ## 1. Business Understanding  
-Perusahaan Edutech Jayajaya berkembang pesat namun mengalami **attrition ~14 %**, mengancam stabilitas tim serta efektivitas inisiatif strategis.
+Perusahaan Edutech Jayajaya berkembang pesat tetapi mengalami **attrition ~14 %**, mengancam stabilitas tim serta efektivitas inisiatif strategis.
 
 **Tujuan Proyek**  
-
-1. Memprediksi karyawan yang berisiko resign.  
-2. Mengidentifikasi faktor penyebab utama attrition.  
-3. Menyajikan insight visual agar HR dapat intervensi tepat sasaran.
+1. Memprediksi karyawan berisiko resign.  
+2. Mengidentifikasi faktor penyebab utama.  
+3. Menyajikan insight visual agar HR dapat intervensi tepat sasaran.
 
 ---
 
@@ -24,23 +23,20 @@ Perusahaan Edutech Jayajaya berkembang pesat namun mengalami **attrition ~14 %
 ---
 
 ## 3. Cakupan Proyek  
-- **Exploratory Data Analysis (EDA)** – statistik deskriptif & visual.  
-- **Statistical Testing** – chi‑square (BusinessTravel, MaritalStatus, OverTime) & t‑test (Age, MonthlyIncome).  
+- **EDA & Statistik** – distribusi demografi, lembur, kepuasan kerja.  
+- **Statistical Testing** – chi‑square & t‑test variabel kunci.  
 - **Predictive Modelling** – One‑hot → Scaling → SMOTE → Random Forest (AUC 0.86).  
 - **Feature Importance** – RF importance & SHAP.  
-- **Deployment** – ekspor hasil prediksi & dashboard Tableau.
+- **Deployment** – hasil prediksi → Excel, dashboard Tableau.
 
 ---
 
 ## 4. Dataset & Environment  
 
 ### 4.1 Dataset  
-`employee_data_imputed.csv` – data historis karyawan (setelah proses imputasi).
+`employee_data_imputed.csv` – data historis karyawan (setelah imputasi).
 
 ### 4.2 Requirements  
-File `requirements.txt`  
-
-
 ```
 
 numpy==1.24.0
@@ -55,11 +51,10 @@ xgboost==1.4.2
 ````
 
 ### 4.3 Setup Environment  
-
 ```bash
 python -m venv venv
 # Windows ➜ venv\Scripts\activate
-# Mac/Linux ➜ source venv/bin/activate
+# macOS/Linux ➜ source venv/bin/activate
 pip install -r requirements.txt
 ````
 
@@ -80,10 +75,13 @@ Notebook memuat EDA, preprocessing, training, evaluasi, serta ekspor `attrition_
 ### 6.1 Penempatan Berkas
 
 ```
-attrition_pipeline.pkl    # model terlatih
-raw_input.csv             # data karyawan mentah (belum one‑hot)
-predict.py                # skrip prediksi
+model/
+├─ attrition_pipeline.pkl
+├─ raw_input.csv
+predict.py
 ```
+
+> Jika input bernama `no_attrition.csv`, ubah variabel `INPUT_CSV` di `predict.py`.
 
 ### 6.2 Menjalankan Prediksi
 
@@ -91,11 +89,7 @@ predict.py                # skrip prediksi
 python predict.py
 ```
 
-Output ➜ **`attrition_prediction_result.xlsx`** berisi kolom:
-
-\| EmployeeId | Attrition Probability | Predicted Class | Risk Level |
-
-Hanya karyawan **Medium** & **High Risk** disertakan.
+Output ➜ **`attrition_prediction_result.xlsx`** (karyawan Medium & High Risk).
 
 ---
 
@@ -104,19 +98,34 @@ Hanya karyawan **Medium** & **High Risk** disertakan.
 | Metode             | Cara Akses                                                                                                                                                                                 |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Tableau Public** | [https://public.tableau.com/app/profile/hafshah.shaliha/viz/HRAnalysisDashboard-2/Dashboard2](https://public.tableau.com/app/profile/hafshah.shaliha/viz/HRAnalysisDashboard-2/Dashboard2) |
-| **File `.twbx`**   | Buka `hafshah_shaliha_uhvc-dashboard.twbx` di Tableau Desktop → Dashboard 2                                                                                                                         |
-
-Dashboard menampilkan Prediction Table, Attrition Breakdown, Feature Importance, dsb.
+| **File `.twbx`**   | Buka `HRAnalysisDashboard-2.twbx` di Tableau Desktop → Dashboard 2                                                                                                                         |
 
 ---
 
-## 8. Output Penting
+## 8. Berkas yang Tertera
 
-| Berkas                                      | Fungsi                                                 |
-| ------------------------------------------- | ------------------------------------------------------ |
-| `attrition_prediction_result.xlsx`          | Daftar karyawan berisiko (probabilitas & level risiko) |
-| `hafshah_shaliha_uhvc-dashboard.twbx` / Tableau link | Dashboard interaktif untuk manajemen                   |
-| `HR_Attrition_Analysis.ipynb`               | Notebook EDA & modelling lengkap                       |
+```
+submission/
+├─ preprocessing/
+│  ├─ Model-Based Imputation.ipynb
+│  └─ employee_data_imputed.csv
+│
+├─ model/
+│  ├─ attrition_pipeline.pkl
+│  └─ raw_input.csv
+│
+├─ HR_Attrition_Analysis.ipynb
+├─ HRAnalysisDashboard-2.twbx
+├─ predict.py
+├─ attrition_prediction_result.xlsx   # (terbentuk setelah menjalankan predict.py)
+├─ requirements.txt
+└─ README.md
+```
+
+> **Keterangan:**
+> • Folder **preprocessing/** memuat notebook imputasi & dataset bersih.
+> • Folder **model/** memuat pipeline terlatih dan data input untuk inferensi.
+> • `predict.py` akan mengambil `model/attrition_pipeline.pkl` & `model/raw_input.csv` lalu menulis hasil ke `attrition_prediction_result.xlsx`.
 
 ---
 
@@ -126,23 +135,22 @@ Dashboard menampilkan Prediction Table, Attrition Breakdown, Feature Importance,
 
 * Random Forest + SMOTE mencapai **akurasi 86 %**.
 * Faktor utama: **OverTime**, **YearsWithCurrManager**, **EnvironmentSatisfaction**.
-* Hanya 2 karyawan High Risk (prob ≥ 0.80) → intervensi retensi bisa sangat fokus.
+* Hanya 2 karyawan High Risk (prob ≥ 0.80) → intervensi retensi dapat difokuskan.
 
 **Rekomendasi**
 
-1. **Compensation Review** untuk High Performers.
-2. **Program Engagement & Lingkungan Kerja** (survei rutin, team‑bonding).
-3. **Retention Check‑in** dengan manajer bagi 18 karyawan Medium Risk.
+1. Compensation Review bagi High Performers.
+2. Program Engagement & Lingkungan Kerja (survei rutin, team‑bonding).
+3. Retention Check‑in untuk 18 karyawan Medium Risk.
 
 ---
 
 ## 10. Author
 
-* **Nama:** Hafshah Mar'atu Shaliha
+* **Nama:** Hafshah Mar'atu Shaliha
 * **Email:** [hafshahshalihaa@gmail.com](mailto:hafshahshalihaa@gmail.com)
-* **Dicoding ID:** hafshah\_shaliha\_uhvc
+* **Dicoding ID:** hafshah\_shaliha\_uhvc
 
-Terima kasih telah menilai submission ini—silakan hubungi saya jika ada pertanyaan.
+Terima kasih telah menilai submission ini—hubungi saya jika ada pertanyaan lebih lanjut.
 
-```
 
