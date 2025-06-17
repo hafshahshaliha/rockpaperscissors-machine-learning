@@ -104,7 +104,7 @@ Hanya karyawan **Medium** & **High Risk** disertakan.
 | Metode             | Cara Akses                                                                                                                                                                                 |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Tableau Public** | [https://public.tableau.com/app/profile/hafshah.shaliha/viz/HRAnalysisDashboard-2/Dashboard2](https://public.tableau.com/app/profile/hafshah.shaliha/viz/HRAnalysisDashboard-2/Dashboard2) |
-| **File `.twbx`**   | Buka `HRAnalysisDashboard-2.twbx` di Tableau Desktop → Dashboard 2                                                                                                                         |
+| **File `.twbx`**   | Buka `hafshah_shaliha_uhvc-dashboard.twbx` di Tableau Desktop → Dashboard 2                                                                                                                         |
 
 Dashboard menampilkan Prediction Table, Attrition Breakdown, Feature Importance, dsb.
 
@@ -115,7 +115,7 @@ Dashboard menampilkan Prediction Table, Attrition Breakdown, Feature Importance,
 | Berkas                                      | Fungsi                                                 |
 | ------------------------------------------- | ------------------------------------------------------ |
 | `attrition_prediction_result.xlsx`          | Daftar karyawan berisiko (probabilitas & level risiko) |
-| `HRAnalysisDashboard-2.twbx` / Tableau link | Dashboard interaktif untuk manajemen                   |
+| `hafshah_shaliha_uhvc-dashboard.twbx` / Tableau link | Dashboard interaktif untuk manajemen                   |
 | `HR_Attrition_Analysis.ipynb`               | Notebook EDA & modelling lengkap                       |
 
 ---
