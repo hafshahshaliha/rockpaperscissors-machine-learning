@@ -1,4 +1,3 @@
-```markdown
 # Proyek Akhir: Menyelesaikan Permasalahan Turnover Karyawan pada Perusahaan Edutech  
 > **Studi Kasus – PT Jayajaya (Platform Pembelajaran Daring)**
 
@@ -40,6 +39,7 @@ Perusahaan Edutech Jayajaya berkembang pesat namun mengalami **attrition ~14 %
 
 ### 4.2 Requirements  
 File `requirements.txt`  
+
 
 ```
 
