@@ -48,5 +48,3 @@ source venv/bin/activate        # Windows → venv\Scripts\activate
 
 # 2) Instal paket
 pip install -r requirements.txt
-
----
