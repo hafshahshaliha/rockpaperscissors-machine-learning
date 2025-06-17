@@ -85,8 +85,6 @@ raw_input.csv             # data karyawan mentah (belum one‑hot)
 predict.py                # skrip prediksi
 ```
 
-> Jika input bernama `no_attrition.csv`, ubah variabel `INPUT_CSV` di `predict.py`.
-
 ### 6.2 Menjalankan Prediksi
 
 ```bash
@@ -148,5 +146,3 @@ Terima kasih telah menilai submission ini—silakan hubungi saya jika ada pertan
 
 ```
 
-> **Instruksi:** simpan blok teks di atas sebagai `README.md` dalam folder submission. README ini mencakup seluruh poin 1–10 beserta panduan menjalankan notebook, skrip prediksi, dan dashboard.
-```
