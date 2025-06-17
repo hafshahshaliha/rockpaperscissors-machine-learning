@@ -50,5 +50,3 @@ source venv/bin/activate        # Windows → venv\Scripts\activate
 pip install -r requirements.txt
 
 ---
-
-## 5 | Menjalankan Exploratory Data Analysis
